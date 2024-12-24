@@ -1,5 +1,6 @@
 # DJ(?
 ## Concept Development 動機
+製作一個音樂編輯器，讓所有人能夠連得到樹梅派，可自動上傳想要的音樂去做編輯，也可直接使用內建音樂
 
 ## Implementation Resources 硬體設備
 - 樹梅派
@@ -14,6 +15,7 @@
 ## Implementation Process 執行過程
 
 ## Knowledge from Lecture 善用所學
+- Linux 系統基本指令
 
 ## Installation 前置下載
 **以下環境皆為Linux**
@@ -30,5 +32,5 @@
 
 ## Job Assignment
 
-## References
+## References 參考資料
 
