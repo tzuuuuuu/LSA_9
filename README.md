@@ -2,10 +2,15 @@
 ## Concept Development 動機
 製作一個音樂編輯器，想讓所有人能夠連得到樹梅派，可自動上傳想要的音樂去做編輯，也可直接使用內建音樂，在音樂上做出一些音效或燈光的效果
 
-## Implementation Resources 硬體設備
-- 樹梅派
-- 電腦
-- 喇叭
+## Implementation Resources 用到的資源
+- 硬體
+  - 樹梅派
+  - 電腦
+  - 喇叭
+- 軟體
+  - Python
+  - Pygame
+  - Apache
 
 ## Existing Library/Sofrware 軟體架構
 - Python
@@ -17,7 +22,7 @@
 ## Knowledge from Lecture 善用所學
 - Linux 系統基本指令
 
-## Installation 前置下載
+## Installation 前置下載(怎麼安裝
 **以下環境皆為Linux**
 - 在SD卡灌入樹梅派系統
 - 設定 WiFi 以及 SSH
@@ -28,7 +33,7 @@
 - 安裝 Apache
   - `sudo apt install apache2`
 
-## Usage (怎麼用
+## Usage (怎麼操作
 
 ## Job Assignment
 
