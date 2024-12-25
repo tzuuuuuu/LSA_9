@@ -12,7 +12,7 @@
   - Pygame
   - Apache
 
-## Existing Library/Sofrware 軟體架構
+## Existing Library/Sofrware 套件
 - Python
 - Pygame
 - Apache
