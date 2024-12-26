@@ -63,16 +63,16 @@
   - `sudo apt install apache2`
     ### 使用 Flask + Nginx需安裝
 #### 安裝必要的軟體
-  -`sudo apt install python3 python3-pip python3-venv nginx -y`
+  - `sudo apt install python3 python3-pip python3-venv nginx -y`
 #### 建立並啟動 Flask 專案
 ###### 1.建立專案資料夾
-  -`mkdir ~/my_flask_app`
-  -`cd ~/my_flask_app`
+  - `mkdir ~/my_flask_app`
+  - `cd ~/my_flask_app`
 ###### 2.設定虛擬環境
-  -`python3 -m venv venv`
-  -`source venv/bin/activate`
+  - `python3 -m venv venv`
+  - `source venv/bin/activate`
 ###### 3.安裝 Flask
-  -`pip install flask`
+  - `pip install flask`
 ###### 4.建立 Flask 應用程式(在 ~/my_flask_app 中建立檔案 app.py)
 ```
 from flask import Flask
@@ -86,9 +86,9 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
 ```
 ###### 5.測試 Flask 應用
-  -`python app.py`
+  - `python app.py`
 ##### 6.編輯 Nginx 配置檔
-  -`sudo nano /etc/nginx/sites-available/flask_app'
+  - `sudo nano /etc/nginx/sites-available/flask_app`
   ###### 添加以下內容:
    ```server {
     listen 80;
@@ -104,18 +104,18 @@ if __name__ == "__main__":
 ```
 ##### 7.啟用 Nginx 配置
   ###### 建立符號連結啟用配置檔案
-  -`sudo ln -s /etc/nginx/sites-available/flask_app /etc/nginx/sites-enabled/`
+  - `sudo ln -s /etc/nginx/sites-available/flask_app /etc/nginx/sites-enabled/`
   ###### 測試 Nginx 配置是否正確
-  -`sudo nginx -t`
+  - `sudo nginx -t`
   ###### 重新啟動 Nginx
-  -`sudo systemctl restart nginx`
+  - `sudo systemctl restart nginx`
 ##### 8.使用 Gunicorn 啟動 Flask 應用
   ###### 安裝 Gunicorn
-  -`pip install gunicorn`
+  - `pip install gunicorn`
   ###### 啟動應用
-  -`gunicorn --workers 3 --bind 127.0.0.1:5000 app:app`
+  - `gunicorn --workers 3 --bind 127.0.0.1:5000 app:app`
   ###### 設置 Systemd 自動啟動服務
-  -`sudo nano /etc/systemd/system/my_flask_app.service`
+  - `sudo nano /etc/systemd/system/my_flask_app.service`
   ###### 添加以下內容:
   ```[Unit]
   Description=Gunicorn instance to serve Flask App
