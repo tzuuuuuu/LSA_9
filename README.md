@@ -31,7 +31,21 @@
   - (2) 使用 Gunicorn 或其他 WSGI Server（建議）:`pip install gunicorn` -> `gunicorn --bind 0.0.0.0:5000 app:app`
 - 可選：設置自動啟動服務
   - (1)創建一個服務檔案:`sudo nano /etc/systemd/system/flask_project.service`
-  - (2)添加以下內容
+  - (2)添加以下內容:
+  - ```ini
+    [Unit]
+    Description=Flask Project
+    After=network.target
+    
+    [Service]
+    User=pi
+    WorkingDirectory=/home/pi/flask_project
+    ExecStart=/home/pi/flask_project/venv/bin/gunicorn --bind 0.0.0.0:5000 app:app
+    Restart=always
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
   - (3)啟動並啟用服務:`sudo systemctl start flask_project` -> `sudo systemctl enable flask_project`
 
 ## Knowledge from Lecture 善用所學
