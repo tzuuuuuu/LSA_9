@@ -106,6 +106,12 @@ if __name__ == "__main__":
 
 
 ## Job Assignment
+- 孫翊軒
+- 周育輝
+- 郭于擎
+- 邱昀晴
+- 徐靖姿
+- 鄭伃茜
 
 ## References 參考資料
 
