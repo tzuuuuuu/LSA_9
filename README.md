@@ -89,18 +89,18 @@ if __name__ == "__main__":
 
 
 ## Usage (怎麼操作
-![image](https://github.com/user-attachments/assets/d85e3a8f-ce3a-4b6a-8cc5-19123ab0057a)
+![image](https://github.com/user-attachments/assets/d7559097-8b38-4312-8283-6b1f4a2f141f)
 1. 可選擇自己得檔案上傳
 2. 播放
 3. 暫停
 4. 繼續
-5. 1
-6. 1
-7. 1
-8. 1
-9. 1
-10. 1
-11. 1
+5. 濾波器
+6. 音量調整
+7. 進度條
+8. 播放速度
+9. loop
+10. 正在播放的檔案
+11. 
 12. 1
 13. 1
 
