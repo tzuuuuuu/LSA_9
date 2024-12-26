@@ -10,12 +10,12 @@
 - 軟體
   - Python
   - Pygame
-  - Apache
+  - Nginx
 
 ## Existing Library/Sofrware 套件
 - Python
 - Pygame
-- Apache
+- Nginx
 
 ## Implementation Process 執行過程
 
