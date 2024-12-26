@@ -84,7 +84,7 @@ if __name__ == "__main__":
   - `sudo systemctl restart nginx`
 ##### 8.測試
 ###### 打開瀏覽器，輸入 http://192.168.0.105，你應該可以看到 Flask 應用的內容
-![image](https://github.com/user-attachments/assets/301d7edd-74f8-4a41-b69a-e9b47f96210d)
+![image](https://github.com/user-attachments/assets/eabfe89e-e568-4c83-8c54-e1ea3b013107)
 外部的請求先經過 Nginx（80 埠），再由它代理到 Flask（5000 埠）。這種方式增加了安全性和靈活性。
 
 
