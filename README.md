@@ -65,15 +65,15 @@
 #### 安裝必要的軟體
   - `sudo apt install python3 python3-pip python3-venv nginx -y`
 #### 建立並啟動 Flask 專案
-###### 1.建立專案資料夾
+##### 1.建立專案資料夾
   - `mkdir ~/my_flask_app`
   - `cd ~/my_flask_app`
-###### 2.設定虛擬環境
+##### 2.設定虛擬環境
   - `python3 -m venv venv`
   - `source venv/bin/activate`
-###### 3.安裝 Flask
+##### 3.安裝 Flask
   - `pip install flask`
-###### 4.建立 Flask 應用程式(在 ~/my_flask_app 中建立檔案 app.py)
+##### 4.建立 Flask 應用程式(在 ~/my_flask_app 中建立檔案 app.py)
 ```
 from flask import Flask
 app = Flask(__name__)
@@ -85,7 +85,7 @@ def home():
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
 ```
-###### 5.測試 Flask 應用
+##### 5.測試 Flask 應用
   - `python app.py`
 ##### 6.編輯 Nginx 配置檔
   - `sudo nano /etc/nginx/sites-available/flask_app`
