@@ -22,6 +22,7 @@
 
 ## Knowledge from Lecture 善用所學
 - Linux 系統基本指令
+- WebServer
 
 ## Installation 前置下載(怎麼安裝
 **以下環境皆為Linux**
