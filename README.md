@@ -127,13 +127,30 @@ if __name__ == "__main__":
   Environment="PATH=/home/your_username/my_flask_app/venv/bin"
   ExecStart=/home/your_username/my_flask_app/venv/bin/gunicorn --workers 3 --bind      127.0.0.1:5000 app:app
   [Install]
-  WantedBy=multi-user.target```
+  WantedBy=multi-user.target
+```
 ##### 9.啟用並啟動服務
   -`sudo systemctl daemon-reload`
   -`sudo systemctl start my_flask_ap`
   -`sudo systemctl enable my_flask_app`
 
 ## Usage (怎麼操作
+![image](https://github.com/user-attachments/assets/d85e3a8f-ce3a-4b6a-8cc5-19123ab0057a)
+1. 可選擇自己得檔案上傳
+2. 播放
+3. 暫停
+4. 繼續
+5. 1
+6. 1
+7. 1
+8. 1
+9. 1
+10. 1
+11. 1
+12. 1
+13. 1
+
+
 
 ## Job Assignment
 
