@@ -61,7 +61,7 @@
  ### 安裝軟體
 - 安裝 Apache
   - `sudo apt install apache2`
-    ### 使用 Flask + Nginx需安裝
+### 使用 Flask + Nginx需安裝
 #### 安裝必要的軟體
   - `sudo apt install python3 python3-pip python3-venv nginx -y`
 #### 建立並啟動 Flask 專案
