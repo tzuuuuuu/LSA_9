@@ -82,30 +82,11 @@ if __name__ == "__main__":
   - `sudo nginx -t`
   ###### 重新啟動 Nginx
   - `sudo systemctl restart nginx`
-##### 8.使用 Gunicorn 啟動 Flask 應用
-  ###### 安裝 Gunicorn
-  - `pip install gunicorn`
-  ###### 啟動應用
-  - `gunicorn --workers 3 --bind 127.0.0.1:5000 app:app`
-  ###### 設置 Systemd 自動啟動服務
-  - `sudo nano /etc/systemd/system/my_flask_app.service`
-  ###### 添加以下內容:
-  ```[Unit]
-  Description=Gunicorn instance to serve Flask App
-  After=network.target
-  [Service]
-  User=your_username
-  Group=www-data
-  WorkingDirectory=/home/your_username/my_flask_app
-  Environment="PATH=/home/your_username/my_flask_app/venv/bin"
-  ExecStart=/home/your_username/my_flask_app/venv/bin/gunicorn --workers 3 --bind      127.0.0.1:5000 app:app
-  [Install]
-  WantedBy=multi-user.target
-```
-##### 9.啟用並啟動服務
-  -`sudo systemctl daemon-reload`
-  -`sudo systemctl start my_flask_ap`
-  -`sudo systemctl enable my_flask_app`
+##### 8.測試
+###### 打開瀏覽器，輸入 http://192.168.0.105，你應該可以看到 Flask 應用的內容
+![image](https://github.com/user-attachments/assets/301d7edd-74f8-4a41-b69a-e9b47f96210d)
+外部的請求先經過 Nginx（80 埠），再由它代理到 Flask（5000 埠）。這種方式增加了安全性和靈活性。
+
 
 ## Usage (怎麼操作
 ![image](https://github.com/user-attachments/assets/d85e3a8f-ce3a-4b6a-8cc5-19123ab0057a)
