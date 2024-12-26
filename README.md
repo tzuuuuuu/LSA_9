@@ -4,7 +4,7 @@
 
 ## Implementation Resources 用到的資源
 - 硬體
-  - 樹梅派
+  - 樹莓派
   - 電腦
   - 喇叭
 - 軟體
