@@ -74,8 +74,8 @@
 ###### 3.安裝 Flask
   -`pip install flask`
 ###### 4.建立 Flask 應用程式(在 ~/my_flask_app 中建立檔案 app.py)
-`from flask import Flask
-
+```
+from flask import Flask
 app = Flask(__name__)
 
 @app.route("/")
@@ -83,7 +83,8 @@ def home():
     return "Hello, Flask with Nginx!"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)`
+    app.run(host="0.0.0.0", port=5000)
+```
 ###### 5.測試 Flask 應用
   -`python app.py`
 ##### 6.編輯 Nginx 配置檔
