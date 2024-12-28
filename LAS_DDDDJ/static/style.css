@@ -1,0 +1,591 @@
+/* 全局設置 */
+body {
+    font-family: Arial, sans-serif;
+    background:repeating-linear-gradient(#000000, #3c0236, #b40477);color: #fff; /* 白色字體 */
+    margin: 0;
+    padding: 0;
+}
+
+#div_glow {
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+#div_glow2 {
+    transition: background-color 0.5s ease;
+}
+
+#div_glow3 {
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/*光暈：預設Off*/
+.no_glow {
+    box-shadow: none;
+}
+
+/*光暈On*/
+.glow_effect {
+    box-shadow: 0 0 30px 10px #ff5733, 0 0 60px 20px #33ff57, 0 0 90px 30px #3357ff; /* 預設多層光暈 */
+    border-radius: 10px;
+}
+
+/* 音樂播放器容器 */
+.music-players-container {
+    display: flex;
+    justify-content: space-between; /* 左右對齊 */
+    align-items: flex-start; /* 垂直對齊到頂部 */
+    padding: 20px; /* 增加間距 */
+
+}
+
+/* 音樂清單與效果音容器 */
+.music-select-container {
+    flex: 1;
+    text-align: center;
+    margin: 0 10px;
+    box-shadow: none !important; /* Force remove any glow effect */
+}
+
+.effect-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.effect-container button {
+    background-color: rgba(46, 46, 46, 0.7); /* 改為半透明的背景 */
+    padding: 60px 30px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8em;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.effect-container button.active {
+    background-color: rgba(85, 85, 85, 0.7); /* 點擊時的背景也改為半透明 */
+    transform: scale(0.95);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8),  /* 外紅光 */
+                inset 0 0 20px rgba(255, 0, 0, 0.5);  /* 內紅光 */
+}
+
+.effect-container button:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 0 20px rgba(0, 255, 110, 0.5), 0 0 20px rgba(17, 255, 33, 0.971);
+    outline: 1px solid !important;
+    outline-color: rgba(115, 205, 24, 0) !important;
+    outline-offset: 15px;
+    text-shadow: 1px 1px 2px #427388;
+}
+
+/* 單個音樂播放器 */
+.music-player {
+    flex: 0 0 400px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 10px;
+    transition: all 0.5s ease;
+    background: rgba(46, 46, 46, 0.7);  /* 修改為半透明的深灰色背景 */
+}
+
+.music-player.no_glow {
+    background: rgba(46, 46, 46, 0.7);  /* 無光暈時更透明 */
+}
+
+.music-player.glow_effect {
+    box-shadow: 0 0 30px 10px #ff5733, 0 0 60px 20px #33ff57, 0 0 90px 30px #3357ff;
+}
+
+/* DJ唱片 */
+.dj-disk {
+    width: 220px;
+    height: 220px;
+    margin: 20px auto;
+    border: 8px solid #333;
+    border-radius: 50%;
+    background: radial-gradient(circle, #111, #222, #333);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 4px 8px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.dj-disk::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    background: radial-gradient(circle, transparent, rgba(255, 255, 255, 0.05));
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.dj-disk img {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    -webkit-user-drag: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+}
+
+.dj-disk .center {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #444, #000);
+    border: 3px solid #888;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.dj-disk .tracks {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: conic-gradient(
+        rgba(255, 255, 255, 0.05) 0deg 30deg,
+        transparent 30deg 60deg
+    );
+    animation: spin 20s linear infinite;
+}
+
+.dj-disk .tracks.active {
+    animation-duration: 4s;
+}
+
+.dj-disk.playing:not(.dragging) img {
+    animation: spin 4s linear infinite;
+}
+
+.dj-disk:hover {
+    opacity: 0.9;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 進度條容器 */
+.progress-container {
+    position: relative;
+    margin: 8px auto;
+    padding: 8px 0;
+}
+
+/* 所有滑塊的通用樣式 */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 80%;  /* 統一寬度為80% */
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #e40085 0%, #e74c3c 100%);
+    outline: none;
+    margin: 10px auto;  /* 上下間距10px，左右自動置中 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    display: block;  /* 讓margin: auto生效 */
+}
+
+/* Webkit (Chrome, Safari, Edge) 的滑塊樣式 */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #666;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.2s;
+    margin-top: -5px; /* 修正垂直位置 */
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #444;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    background: #333;
+    transform: scale(1.1);
+}
+
+/* Firefox 的滑塊樣式 */
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: #666;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.2s;
+    transform: translateY(0); /* 修正 Firefox 的位置 */
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    background: #444;
+}
+
+input[type="range"]::-moz-range-thumb:active {
+    background: #333;
+    transform: scale(1.1);
+}
+
+/* 滑塊軌道樣式 */
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #e40085 0%, #e74c3c 100%);
+    border-radius: 5px;
+}
+
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #e40085 0%, #e74c3c 100%);
+    border-radius: 5px;
+}
+
+/* 控制元素 */
+select, button, input[type="range"] {
+    margin: 5px;
+}
+
+/* 循環控制 */
+.loop-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.loop-control button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: #333;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.loop-control button:hover {
+    transform: scale(1.2);
+}
+
+.loop-display {
+    padding: 5px 10px;
+    background: #333;
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 60px;
+}
+
+.loop-display.active {
+    background: #ff6b00;
+}
+
+.loop-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* 播放器標題 */
+.music-player h2 {
+    font-size: 1.2em;
+    margin: 10px 0 20px; /* 增加上方和光碟之間的間距 */
+    color: #f1c40f; /* 黃色標題 */
+    text-align: center; /* 確保標題文字在光碟下方居中 */
+}
+
+/* 下拉選單與按鈕 */
+select, button {
+    margin: 10px 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    background-color: #444; /* 深灰色按鈕背景 */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s;
+}
+
+select:hover, button:hover {
+    background-color: #c86400; /* 橙色背景 */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* 播放器控制區域 */
+.player-controls {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.disk-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.vertical-sliders {
+    display: flex;
+    gap: 15px;  /* 減少滑塊之間的間距 */
+    height: 220px;
+    align-items: center;
+    margin-right: 20px;  /* 與唱片保持一定距離 */
+}
+
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;  /* 垂直置中 */
+}
+
+/* 垂直滑塊樣式 */
+.vertical-slider {
+    -webkit-appearance: none;
+    width: 10px !important;
+    height: 180px !important;  /* 增加高度 */
+    margin: 0 !important;
+    writing-mode: bt-lr;
+    -webkit-writing-mode: bt-lr;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    background: linear-gradient(to bottom, #e40085 0%, #e74c3c 100%) !important;
+    position: relative;
+}
+
+/* Webkit 瀏覽器的滑塊控制點樣式 */
+.vertical-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #666;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.2s;
+    transform: translateX(-4px);  /* 微調位置 */
+}
+
+/* Firefox 的滑塊控制點樣式 */
+.vertical-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: #666;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.2s;
+    transform: translateX(-4px);  /* 微調位置 */
+}
+
+/* 滑塊控制點的懸停和活動狀態 */
+.vertical-slider::-webkit-slider-thumb:hover,
+.vertical-slider::-moz-range-thumb:hover {
+    background: #444;
+}
+
+.vertical-slider::-webkit-slider-thumb:active,
+.vertical-slider::-moz-range-thumb:active {
+    background: #333;
+    transform: translateX(-4px) scale(1.1);  /* 保持與靜止狀態相同的位移 */
+}
+
+/* 滑塊軌道樣式 */
+.vertical-slider::-webkit-slider-runnable-track,
+.vertical-slider::-moz-range-track {
+    width: 10px;
+    height: 180px;
+    cursor: pointer;
+    background: transparent;
+}
+
+.effects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;  /* 縮小間距 */
+    margin: 10px 0;
+    padding: 8px;  /* 縮小內邊距 */
+}
+
+.effects-grid .effect-button {
+    width: 100%;
+    height: 70px;  /* 縮小按鈕高度 */
+    padding: 7px;  /* 縮小內邊距 */
+    background: rgba(46, 46, 46, 0.7);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;  /* 稍微縮小圓角 */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;  /* 縮小字體 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.effects-grid .effect-button:hover {
+    background: rgba(85, 85, 85, 0.7);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-effects {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.custom-effects .effect-button {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);  /* 改為半透明背景 */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.custom-effects .effect-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.music-select-container {
+    flex: 1;
+    text-align: center;
+    margin: 0 10px;
+    box-shadow: none !important; /* Force remove any glow effect */
+}
+
+.button-row,
+.file-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 按鈕之間的間距 */
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #2e2e2e; /* 灰色背景 */
+    padding: 30px 7px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8em;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+label {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+label:hover {
+    background-color: #555;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.background-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.background-controls button {
+    margin: 0 5px;
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.background-controls button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}

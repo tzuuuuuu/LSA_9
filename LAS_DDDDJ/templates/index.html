@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雙背景音樂播放與效果音</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js"></script>
+</head>
+<body>
+    <!-- 背景影片 -->
+    <div class="video-background">
+        <video id="bgVideo" autoplay muted loop>
+            <source src="" type="video/mp4">
+        </video>
+    </div>
+    
+    <!-- 背景切換按鈕 -->
+    <div class="background-controls">
+        <button onclick="changeBackground(1)">背景 1</button>
+        <button onclick="changeBackground(2)">背景 2</button>
+        <button onclick="changeBackground(3)">背景 3</button>
+    </div>
+
+    <div class="music-players-container">
+        <!-- 第一個播放器 -->
+        <div id="div_glow" class="music-player">
+            <h2>背景音樂播放器 1</h2>
+            <input type="file" accept="audio/*" id="fileInput1">
+            <button id="uploadButton1">上傳</button>
+            <br>
+            <div class="player-controls">
+                <div class="disk-container">
+                    <div class="vertical-sliders">
+                        <div class="slider-group">
+                            <input type="range" id="filterControl1" min="0" max="2000" step="10" value="1500" class="vertical-slider">
+                        </div>
+                        <div class="slider-group">
+                            <input type="range" id="volumeControl1" min="0" max="100" step="1" value="100" class="vertical-slider">
+                        </div>
+                    </div>
+                    <div class="dj-disk" id="djDisk1">
+                        <img src="/static/disk.png" alt="DJ Disk">
+                    </div>
+                </div>
+            </div>
+            <button id="playButton1">播放</button>
+            <button id="pauseButton1">暫停</button>
+            <button id="resumeButton1">繼續</button>
+            <br>
+            <div class="progress-container">
+                <input type="range" id="progressBar1" min="0" max="100" value="0" step="1">
+            </div>
+            <br>
+            <div class="speed-control">
+                <label for="speedControl1">播放速度</label>
+                <input type="range" id="speedControl1" min="0.5" max="2.0" step="0.2" value="1.0">
+            </div>
+            <div class="loop-control">
+                <button id="loopDownButton1">-</button>
+                <div id="loopDisplay1" class="loop-display">
+                    <svg class="loop-icon" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
+                        <path fill="currentColor" d="M12,20V22A10,10 0 0,0 22,12H20A8,8 0 0,1 12,20Z" />
+                    </svg>
+                    <span class="beat-value">1</span>
+                </div>
+                <button id="loopUpButton1">+</button>
+            </div>
+        </div>
+
+        <!-- 音效按鈕區域 -->
+        <div id="div_glow2" class="music-select-container">
+            <select id="musicSelect1">
+                {% for music in music_files %}
+                <option value="{{ music }}">{{ music }}</option>
+                {% endfor %}
+            </select>
+            <select id="musicSelect2">
+                {% for music in music_files %}
+                <option value="{{ music }}">{{ music }}</option>
+                {% endfor %}
+            </select>
+            <div class="effects-grid">
+                <button id="effectButton1" class="effect-button">播放效果音 01</button>
+                <button id="effectButton2" class="effect-button">播放效果音 02</button>
+                <button id="effectButton3" class="effect-button">播放效果音 03</button>
+                <button id="effectButton4" class="effect-button">播放效果音 04</button>
+                <button id="effectButton5" class="effect-button">播放效果音 05</button>
+                <button id="effectButton6" class="effect-button">播放效果音 06</button>
+                <button id="effectButton7" class="effect-button">播放效果音 07</button>
+                <button id="effectButton8" class="effect-button">播放效果音 08</button>
+                <button id="effectButton9" class="effect-button">播放效果音 09</button>
+                <button id="effectButton10" class="effect-button">播放效果音 10</button>
+                <button id="effectButton11" class="effect-button">播放效果音 11</button>
+                <button id="effectButton12" class="effect-button">播放效果音 12</button>
+            </div>
+            <div class="custom-effects">
+                <button onclick="playCustomEffect(0)" class="effect-button">播放自訂音效1</button>
+                <button onclick="playCustomEffect(1)" class="effect-button">播放自訂音效2</button>
+                <button onclick="playCustomEffect(2)" class="effect-button">播放自訂音效3</button>
+                <button onclick="playCustomEffect(3)" class="effect-button">播放自訂音效4</button>
+                <button onclick="document.getElementById('customEffectInput1').click()" class="effect-button">選擇自訂音效1</button>
+                <button onclick="document.getElementById('customEffectInput2').click()" class="effect-button">選擇自訂音效2</button>
+                <button onclick="document.getElementById('customEffectInput3').click()" class="effect-button">選擇自訂音效3</button>
+                <button onclick="document.getElementById('customEffectInput4').click()" class="effect-button">選擇自訂音效4</button>
+                
+                <input type="file" id="customEffectInput1" accept="audio/*" style="display: none;">
+                <input type="file" id="customEffectInput2" accept="audio/*" style="display: none;">
+                <input type="file" id="customEffectInput3" accept="audio/*" style="display: none;">
+                <input type="file" id="customEffectInput4" accept="audio/*" style="display: none;">
+            </div>
+        </div>
+
+        <!-- 第二個播放器 -->
+        <div id="div_glow3" class="music-player">
+            <h2>背景音樂播放器 2</h2>
+            <input type="file" accept="audio/*" id="fileInput2">
+            <button id="uploadButton2">上傳</button>
+            <br>
+            <div class="player-controls">
+                <div class="disk-container">
+                    <div class="vertical-sliders">
+                        <div class="slider-group">
+                            <input type="range" id="filterControl2" min="0" max="2000" step="10" value="1500" class="vertical-slider">
+                        </div>
+                        <div class="slider-group">
+                            <input type="range" id="volumeControl2" min="0" max="100" step="1" value="100" class="vertical-slider">
+                        </div>
+                    </div>
+                    <div class="dj-disk" id="djDisk2">
+                        <img src="/static/disk.png" alt="DJ Disk">
+                    </div>
+                </div>
+            </div>
+            <button id="playButton2">播放</button>
+            <button id="pauseButton2">暫停</button>
+            <button id="resumeButton2">繼續</button>
+            <br>
+            <div class="progress-container">
+                <input type="range" id="progressBar2" min="0" max="100" value="0" step="1">
+            </div>
+            <br>
+            <div class="speed-control">
+                <label for="speedControl2">播放速度</label>
+                <input type="range" id="speedControl2" min="0.5" max="2.0" step="0.1" value="1.0">
+            </div>
+            <div class="loop-control">
+                <button id="loopDownButton2">-</button>
+                <div id="loopDisplay2" class="loop-display">
+                    <svg class="loop-icon" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" />
+                        <path fill="currentColor" d="M12,20V22A10,10 0 0,0 22,12H20A8,8 0 0,1 12,20Z" />
+                    </svg>
+                    <span class="beat-value">1</span>
+                </div>
+                <button id="loopUpButton2">+</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
