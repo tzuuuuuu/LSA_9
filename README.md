@@ -106,12 +106,15 @@ if __name__ == "__main__":
 
 
 ## Job Assignment
-- 孫翊軒：
+- 孫翊軒：主題發想Dj、建立電腦與樹梅派的遠端連線、使用nginx架設server、網頁前端：濾波器、進度條、loop、碟盤轉動、背景、css設計，上台打碟。
 - 周育輝：功能資料整合、上台表演
-- 郭于擎：
+- 郭于擎：主題發想Dj、程式的前端開發、進度條、音量調整 、濾波器 、效果音、音樂清單、音樂上傳、音檔剪輯、搜集、編輯
 - 邱昀晴：燈光視覺效果、ppt、上台報告
-- 徐靖姿：
-- 鄭伃茜：
+- 徐靖姿：製作PPT、製作GitHub
+- 鄭伃茜：製作PPT、製作GitHub、理解如何在Linux上用flask網頁
+
+## Thankfol
+感謝在柏瑋學長、Josh學長以及Reg學長的無私幫忙
 
 ## References 參考資料
 ·https://www.youtube.com/watch?v=tP-EsZ-deHg
@@ -121,3 +124,6 @@ if __name__ == "__main__":
 ·https://www.youtube.com/watch?v=Vk4KK-gh0FM
 
 ·https://www.youtube.com/watch?v=QCyIY10KBnk
+
+## Canva
+·https://www.canva.com/design/DAGaYOElY-U/Z9xlYvcaPtpNrebCYQRKOg/edit?utm_content=DAGaYOElY-U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
